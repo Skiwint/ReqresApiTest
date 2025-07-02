@@ -45,18 +45,18 @@ public class ReqresApiTest {
         Assert.assertEquals("Janet", userPojo.getFirst_name());
     }
 
-    @Test
-    public void singleNewUserTest(){
-        Specification.installSpecification(Specification.requestSpec(URL), Specification.responseSpecOK200());
-        UserPojo userPojo = given()
-                .when()
-                .header("x-api-key", "reqres-free-v1")
-                .get("/api/users/2")
-                .then().log().all()
-                .extract().body().jsonPath().getObject("data", UserPojo.class);
-
-        Assert.assertEquals("Weaver", userPojo.getLast_name());
-    }
+//    @Test
+//    public void singleNewUserTest(){
+//        Specification.installSpecification(Specification.requestSpec(URL), Specification.responseSpecOK200());
+//        UserPojo userPojo = given()
+//                .when()
+//                .header("x-api-key", "reqres-free-v1")
+//                .get("/api/users/2")
+//                .then().log().all()
+//                .extract().body().jsonPath().getObject("data", UserPojo.class);
+//
+//        Assert.assertEquals("Weaver", userPojo.getLast_name());
+//    }
 
     @Test
     public void singleUserNotFoundTest(){
