@@ -17,7 +17,12 @@ pipeline {
                 // Запускаем тесты Maven (TestNG + RestAssured):
                 sh 'mvn clean test'
             }
-            // Мы добавим блок post чуть позже для публикации отчёта Allure
+            post {
+                // Генерируем Allure-отчет независимо от статуса тестов:
+                always {
+                    allure includeProperties: false, jdk: '', results: [[path: 'target/allure-results']]
+                }
+            }
         }
         // stage('Deploy') будет добавлен после настройки тестов и отчетов
     }
